@@ -120,8 +120,6 @@ There are two ways you could isolate state files:
 2. Isolation via file layout: useful for production use-cases where you need strong separation between environments.
 ---
 
-**Note**: Create a `.gitignore` file and add files such as `variables.tf`, `terraform.tfvars`, `.terraform.tfstate` etc., that contain sensitive information so  that it will not be tracked and exposed to the public on your version control software. e.g Github
-
   ![{820CE5EC-E630-471E-B68D-794522E29B6D} png](https://user-images.githubusercontent.com/76074379/126080150-189345d7-8d75-45b4-95e4-6b584a1f093f.jpg)
 
 ## The VPC | Subnets | Security Groups
@@ -580,6 +578,8 @@ You should also have this file structure in the PBL folder.
 Run ***terraform plan*** and ***terraform apply -auto-approve*** and ensure everything works.
 
 ![{60B91E88-B7FA-4933-BF89-89F584DF9B2D} png](https://user-images.githubusercontent.com/76074379/126080909-9e3d6395-f4e1-41e1-8117-d3c49a36b29f.jpg)
+
+**Note**: Create a `.gitignore` file and add files such as `variables.tf`, `terraform.tfvars`, `.terraform.tfstate` etc., that contain sensitive information so  that it will not be tracked and exposed to the public on your version control software. e.g Github
 
 ## Credits
 
