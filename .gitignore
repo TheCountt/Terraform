@@ -1,3 +1,7 @@
 variables.tf
+<<<<<<< HEAD
 terraform.tfvars
 .terraform.lock*
+=======
+terraform.tfvars
+>>>>>>> 71fd8753ed0851b5fb7f2163c8371fde852bfeb4
