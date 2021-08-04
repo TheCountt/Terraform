@@ -1,2 +1,2 @@
 variables.tf
-terraform.*
+terraform.tfvars
