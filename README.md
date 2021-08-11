@@ -24,9 +24,7 @@
          ```
          choco install terraform
          ```
-  
  
-  ![{820CE5EC-E630-471E-B68D-794522E29B6D} png](https://user-images.githubusercontent.com/76074379/126080150-189345d7-8d75-45b4-95e4-6b584a1f093f.jpg)
 
 ## The VPC | Subnets | Security Groups
 Let us create a directory structure.
