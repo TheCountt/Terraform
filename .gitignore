@@ -6,3 +6,4 @@ terraform.tfvars
 terraform.tfvars
 >>>>>>> 71fd8753ed0851b5fb7f2163c8371fde852bfeb4
 \terraform.tf*
+.terraform
