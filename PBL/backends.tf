@@ -1,7 +1,8 @@
 ## Introducing Backend on S3 
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "dapo-dev-terraform-bucket"
-  # Enable versioning so we can see the full revision history of our state files
+  # Enable versioning so we can see the full revision history of our
+  # state files
   versioning {
     enabled = true
   }
@@ -25,12 +26,12 @@ resource "aws_dynamodb_table" "terraform_locks" {
   }
 }
 
-terraform {
-  backend "s3" {
-    bucket         = "dapo-dev-terraform-bucket"
-    key            = "global/s3/terraform.tfstate"
-    region         = "us-west-1"
-    dynamodb_table = "dapo-dev-terraform-bucket-locks"
-    encrypt        = true
-  }
-}
+# terraform {
+#   backend "s3" {
+#     bucket         = "dapo-dev-terraform-bucket"
+#     key            = "global/s3/terraform.tfstate"
+#     region         = "us-west-1"
+#     dynamodb_table = "dapo-dev-terraform-bucket-locks"
+#     encrypt        = true
+#   }
+# }
