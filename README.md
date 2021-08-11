@@ -46,7 +46,7 @@ resource "aws_dynamodb_table" "terraform_locks" {
 ```
 3. Do `terraform apply` to provision the above resources
  
-4. Create the Backend block
+4. Create the Backend block by pasting the below code snippet to `backend.tf`
 ```
 terraform {
   backend "s3" {
