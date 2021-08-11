@@ -58,7 +58,7 @@ terraform {
   }
 }
 ```
-5. Do a `terraform init` to initialize the new backend 
+5. Run a `terraform init` to initialize the new backend 
 
     This will initialize our new backend after confirming by typing `yes` 
 
@@ -85,7 +85,7 @@ output "dynamodb_table_name" {
   description = "The name of the DynamoDB table"
 }
 ```
-and then do `terraform apply`
+and then run `terraform apply`
 
 Now, head over to the S3 console again, refresh the page, and click the gray “Show” button next to “Versions.” You should now see several versions of your terraform.tfstate file in the S3 bucket:
 
