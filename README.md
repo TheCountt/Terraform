@@ -713,7 +713,7 @@ resource "aws_security_group_rule" "outbound_all-asg" {
 Create a *userdata.sh* file and paste the script below
 ```
 <<EOF
-#! /bin/bash
+#!/bin/bash
 yum -y install httpd
 echo "Hello, from Terraform" > /var/www/html/index.html
 systemctl start httpd
@@ -1088,6 +1088,36 @@ resource "aws_db_subnet_group" "db_instances" {
 }
 ```
 
+It is very risky to expose our secrets(such as username, passwords,etc).To secure our DB username and password, we will use AWS Secrets Manager to store our secrets and reference them in our code.
+
+- First, login to the AWS Secrets Manager UI, click “store a new secret,”
+- Click on `other types of secrets` , click on `Plaintext` and enter the secrets you wish to store in json format:
+  ```
+  {
+  "username": "type the DB username here",
+  "password": "type the DB password here"
+  }
+  ```
+- Next, give the secret a unique name
+- Click “next” and “store” to save the secret
+
+Now, in your Terraform code, you can use the ***aws_secretsmanager_secret_version*** data source to read this secret in our ***rds.tf*** file
+
+```
+data "aws_secretsmanager_secret_version" "credentials" {
+  # Fill in the name you gave to your secret
+  secret_id = "db-secret"
+}
+```
+Since we stored the secret data as JSON, we can use `jsondecode` to parse it
+```
+locals {
+  db_secret = jsondecode(
+    data.aws_secretsmanager_secret_version.credentials.secret_string
+  )
+}
+```
+
 
 Lets create the RDS, add the following code to `rds.tf`
 
@@ -1099,8 +1129,8 @@ resource "aws_db_instance" "default" {
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"
   name                 = "mydb"
-  username             = "admin"
-  password             = "admin1234"
+  username             = local.db_secret.username
+  password             = local.db_secret.password
   parameter_group_name = "default.mysql5.7"
   db_subnet_group_name = "aws_db_subnet_group.db_instances.name"
   skip_final_snapshot  = true
